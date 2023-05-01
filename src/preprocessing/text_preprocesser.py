@@ -49,5 +49,13 @@ class TextPreprocessor:
 
         return cleaned_text
 
-    def preprocess_all(self, texts):
-        return [self.preprocess(text) for text in texts]
+    def preprocess_corpus(self, corpus, output_filename):
+        preprocessed_corpus = [self.preprocess_text(text) for text in corpus]
+
+        with open(output_filename, 'w') as f:
+            for text in preprocessed_corpus:
+                f.write(' '.join(text) + '\n')
+
+        return preprocessed_corpus
+    
+
