@@ -61,8 +61,8 @@ class TextPreprocessor:
 
         output_df.to_csv(output_filename, index=False, encoding='utf-8')
 
-        print(len(preprocessed_corpus))
-        print(len(labels))
+        print(f"Length of preprocessed corpus in preprocesser:{len(preprocessed_corpus)}")
+        print(f"Length of labels in preprocesser:{len(labels)}")
         return preprocessed_corpus, labels
     
 
