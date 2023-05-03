@@ -1,9 +1,12 @@
+import os
 import requests
+import json
 from bs4 import BeautifulSoup
 import random
 import time
 from langdetect import detect
 import pandas as pd
+import matplotlib.pyplot as plt
 
 class WebScraper:
     def __init__(self, random_seed) -> None:
@@ -11,6 +14,15 @@ class WebScraper:
         self.headers = {"User-Agent": "Chrome/58.0.3029.110 (Windows NT 10.0; Win64; x64)"}
         self.language = "en"
 
+
+    def save_movie_ids(self, movie_ids, filename):
+        with open(filename, "w") as outfile:
+            json.dump(movie_ids, outfile)
+
+    def load_movie_ids(self, filename):
+        with open(filename, "r") as infile:
+            return json.load(infile)
+            
     def get_review_urls(self, id, n_reviews):
         """
         Return review URLS
@@ -31,19 +43,21 @@ class WebScraper:
     def get_reviews(self, movie_id, num_reviews, language="en"):
         "Return a list of dictionaries with review data"
 
-        print("In get_reviews")
-
-        urls = self.get_review_urls(movie_id, num_reviews)
+        print(f"Movie ID: {movie_id}")
 
         reviews = []
         response_fail_counter = 0
-        for url in urls:
+        i = 1
+        while len(reviews) < num_reviews:
+            url = f"https://www.imdb.com/title/{movie_id}/reviews/_ajax?sort=helpfulnessScore&dir=desc&ratingFilter=0&start={25*(i-1)}"
+            print(f"URL: {url}")
             response = requests.get(url, headers=self.headers)
             if response.status_code != 200:
                 print(f"Request failed with response: {response.status_code}")
                 response_fail_counter += 1
             else:
                 soup = BeautifulSoup(response.text, "html.parser")
+                prev_len = len(reviews)
                 
                 for review in soup.find_all("div", {'class': 'review-container'}):
                     rating = review.find("span", {"class": "rating-other-user-rating"})
@@ -62,8 +76,16 @@ class WebScraper:
 
                     if det_language == language:
                         reviews.append({ "review_title": title, "text": text, "rating": rating})
-                time.sleep(random.uniform(0.5, 1.5))  # Sleep between requests to not get blocked
-            return reviews
+                
+                # If no new reviews are added, break the loop
+                if len(reviews) == prev_len:
+                    break
+
+                i += 1
+                time.sleep(1)  # Sleep between requests to not get blocked
+        print(f"Number of collected reviews: {len(reviews)}")
+        return reviews
+
         
 
     def reviews_to_dataframe(self, reviews):
@@ -111,28 +133,72 @@ class WebScraper:
 
         return random.sample(list(movie_ids), num_movies)
     
-    def get_movie_reviews(self, num_movies, num_reviews_per_movie, language="en"):
+    def get_movie_reviews(self, num_movies, movie_ids, num_reviews_per_movie, language="en"):
         """
         Returns a DataFrame with reviews and rating for random movies from a range of popular movies.
         """
         
         all_reviews = []
-        movie_ids = self.get_random_movie_ids(num_movies, self.random_seed)
-        for movie_id in movie_ids:
-            try:
-                reviews = self.get_reviews(movie_id, num_reviews_per_movie, language)
-                all_reviews.extend(reviews)
-            except Exception as e:
-                print(f"Error for movie ID {movie_id}: {e}")
-            time.sleep(random.uniform(1, 2))  # Sleep between different movies to not get blocked
+        total_reviews_required = num_movies * num_reviews_per_movie
+        current_reviews_count = 0
+        reviews_since_last_save = 0
+        while current_reviews_count < total_reviews_required:
+            for movie_id in movie_ids:
+                try:
+                    reviews = self.get_reviews(movie_id, num_reviews_per_movie, language)
+                    all_reviews.extend(reviews)
+                    current_reviews_count += len(reviews)
+                    reviews_since_last_save += len(reviews)
+                except Exception as e:
+                    print(f"Error for movie ID {movie_id}: {e}")
+                print(f"Number of currently collected review: {current_reviews_count}")
+                if reviews_since_last_save >= 1000:
+                    print("Saving after at least 1000 collected reviews since last save...")
+                    reviews_df = self.reviews_to_dataframe(all_reviews)
+                    out_path = os.path.join("..", "..","data", "imdb_reviews_rand.csv")
+                    reviews_df.to_csv(path_or_buf=out_path)
+                    del reviews_df
+                    print("Done with Saving. Continuing to collect reviews.")
+                    reviews_since_last_save = 0
+                if current_reviews_count >= total_reviews_required:
+                    break
+
+                time.sleep(1.5)  # Sleep between different movies to not get blocked
+
+            # If not enough reviews have been collected, get more movie IDs
+            if current_reviews_count < total_reviews_required:
+                num_movies_to_fetch = max((total_reviews_required - current_reviews_count) // num_reviews_per_movie, 1)
+                new_movie_ids = self.get_random_movie_ids(num_movies_to_fetch, self.random_seed)
+                movie_ids.extend(new_movie_ids)
 
         return self.reviews_to_dataframe(all_reviews)
     
+    def data_evaluation(self, reviews_df):
+        reviews_df["rating"].hist(bins=10)
+        plt.title("Distribution of the Ratings in Dataset")
+        plt.xlabel("Rating")
+        plt.ylabel("Frequency")
+        save_path = save_path = os.path.join("..", "..", "figures", "Data_distribution.png")
+        plt.savefig(save_path)
+
+    
 if __name__ == "__main__":
+    load_ids = False
     num_movies = 500
-    num_reviews_per_movie = 100
+    num_reviews_per_movie = 20
     random_seed = 42
     language = "en"
     scraper = WebScraper(random_seed=random_seed)
-    reviews_df = scraper.get_movie_reviews(num_movies, num_reviews_per_movie, language)
-    reviews_df.to_csv(path_or_buf="imdb_reviews_rand.csv")
+
+    # Save movie ids when load_ids = False. Load movie ids when load_ids = True 
+    movie_ids_file = "movie_ids.json"
+    if load_ids:
+        movie_ids = scraper.load_movie_ids(movie_ids_file)
+    else:
+        movie_ids = scraper.get_random_movie_ids(num_movies, random_seed)
+        scraper.save_movie_ids(movie_ids, movie_ids_file)
+
+    reviews_df = scraper.get_movie_reviews(num_movies, movie_ids, num_reviews_per_movie, language)
+    out_path = os.path.join("..", "..","data", "imdb_reviews_rand.csv")
+    reviews_df.to_csv(path_or_buf=out_path)
+    scraper.data_evaluation(reviews_df)
