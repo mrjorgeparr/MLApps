@@ -36,21 +36,21 @@ class BaseClassifier:
         return self.model.predict(X_test)
 
 
-    def evaluate(self, X_test, y_test):
+    def evaluate(self, X_test, y_test, vectorizer_name):
         y_pred = self.predict(X_test)
 
         # Create Confustion matrix
-        conf_matr = confusion_matrix(y_test, y_pred)
+        conf_matr = confusion_matrix(y_test, y_pred, normalize='true')
 
         # Plot confusion matrix
         plt.figure(figsize=(10, 10))
-        sns.heatmap(conf_matr, annot=True, fmt='d', cmap='Blues', cbar=False)
+        sns.heatmap(conf_matr, annot=True, fmt='.2f', cmap='Greens', cbar=True)
         plt.title("Confusion Matrix")
         plt.ylabel("True Score")
         plt.xlabel("Predicted Score")
         # Create a path for saving the matrix
-        plot_name = self.model.__class__.__name__  + "_confustion_matrix.png"
-        save_path = os.path.join("C:", os.sep, "Users", "svenb", "Desktop", "MLApps", "figures", plot_name)
+        plot_name = vectorizer_name + "_" + self.model.__class__.__name__  + "_confustion_matrix.png"
+        save_path = os.path.join("..", "..", "figures", plot_name)
 
         plt.savefig(save_path)
 
