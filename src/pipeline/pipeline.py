@@ -79,7 +79,7 @@ class Pipeline:
 
     def save_results(self, vectorizer_name, classifier_name, eval_results):
         # Define a directory for saving the results
-        results_dir = os.path.join("reports", vectorizer_name, classifier_name)
+        results_dir = os.path.join("..","..","reports", vectorizer_name, classifier_name)
         os.makedirs(results_dir, exist_ok=True)
 
         # Save the evaluation results in a text file
