@@ -1,14 +1,20 @@
 import numpy as np
 from gensim.models import Word2Vec
 
+import csv
+
 class IterableSentenceFromFile(object):
-    def __init__(self, filename):
-        self.__filename = filename
-    
+    def __init__(self, filename, text_column='cleaned_text',):
+        self.filename = filename
+        self.text_column = text_column
+
     def __iter__(self):
-        for line in open(self.__filename):
-            # assume there's one sentence per line, tokens separated by whitespace
-            yield line.split()
+        with open(self.filename, 'r', encoding='utf-8') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                # assume there's one sentence per line in the 'text' column, tokens separated by whitespace
+                yield row[self.text_column].split()
+
 
 class Word2VecVectorizer:
     def __init__(self, vector_size=200, window=5, seed=42, sg=1):

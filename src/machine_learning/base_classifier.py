@@ -8,7 +8,7 @@ from sklearn.metrics import (accuracy_score, precision_score, recall_score, f1_s
                              classification_report, confusion_matrix)
 
 class BaseClassifier:
-    def __init__(self, model, search_params, random_state, classifier_name):
+    def __init__(self, model, search_params, random_state):
         self.model = model
         self.search_params = search_params
         self.random_state = random_state
@@ -49,8 +49,9 @@ class BaseClassifier:
         plt.ylabel("True Score")
         plt.xlabel("Predicted Score")
         # Create a path for saving the matrix
-        plot_name = self.classifier.__class__.__name__  + "_confustion_matrix.png"
-        save_path = os.path.join("MLApps", "figures", plot_name)
+        plot_name = self.model.__class__.__name__  + "_confustion_matrix.png"
+        save_path = os.path.join("C:", os.sep, "Users", "svenb", "Desktop", "MLApps", "figures", plot_name)
+
         plt.savefig(save_path)
 
 

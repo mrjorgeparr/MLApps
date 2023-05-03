@@ -4,6 +4,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from bs4 import BeautifulSoup
 from contractions import fix
+import pandas as pd
 
 class TextPreprocessor:
     def __init__(self, remove_stopwords=True, lemmatize=True):
@@ -12,7 +13,7 @@ class TextPreprocessor:
         self.lemmatizer = WordNetLemmatizer()
         self.stopwords = set(stopwords.words('english'))
 
-    def preprocess(self, text):
+    def preprocess_text(self, text):
 
 
         # Remove non-alphanumeric characters
@@ -49,13 +50,19 @@ class TextPreprocessor:
 
         return cleaned_text
 
-    def preprocess_corpus(self, corpus, output_filename):
-        preprocessed_corpus = [self.preprocess_text(text) for text in corpus]
+    def preprocess_corpus(self, input_path, output_filename, text_column="text", label_column="rating"):
+        data_df = pd.read_csv(input_path)
+        corpus = data_df[text_column]
+        labels = data_df[label_column]
 
-        with open(output_filename, 'w') as f:
-            for text in preprocessed_corpus:
-                f.write(' '.join(text) + '\n')
+        preprocessed_corpus = [nltk.word_tokenize(self.preprocess_text(text)) for text in corpus]
 
-        return preprocessed_corpus
+        output_df = pd.DataFrame({'cleaned_text': preprocessed_corpus, 'labels': labels})
+
+        output_df.to_csv(output_filename, index=False, encoding='utf-8')
+
+        print(len(preprocessed_corpus))
+        print(len(labels))
+        return preprocessed_corpus, labels
     
 
