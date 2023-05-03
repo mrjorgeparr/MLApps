@@ -1,1 +1,5 @@
 mlappsvenv/
+src/preprocessing/__pycache__/
+src/vectorization/__pycache__/
+src/machine_learning/__pycache__/
+
