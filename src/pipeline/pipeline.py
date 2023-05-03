@@ -11,6 +11,7 @@ from vectorization.bow_idf_vectorizer import BoWVectorizer
 from vectorization.word2vec_vectorizer import Word2VecVectorizer
 
 from machine_learning.logistic_regression_classifier import LogisticRegressionClassifier
+from machine_learning.knn_classifier import KNNClassifier
 
 from sklearn.model_selection import train_test_split
 
@@ -24,9 +25,10 @@ class Pipeline:
         self.preprocessor = TextPreprocessor()
         self.vectorizers = {
             "bow": BoWVectorizer(),
-#            "word2vec": Word2VecVectorizer()
+            "word2vec": Word2VecVectorizer()
         }
-        self.classifiers = {"Logistic Regression": LogisticRegressionClassifier(random_state=42,)}  # More classifiers can be added here
+        self.classifiers = {"Logistic Regression": LogisticRegressionClassifier(random_state=42,),
+                            "KNN": KNNClassifier(random_state=42)}  # More classifiers can be added here
 
     def add_preprocessor(self, preprocessor):
         self.preprocessor = preprocessor
@@ -70,14 +72,14 @@ class Pipeline:
                 classifier.train(X_train, y_train)
 
                 # Evaluate the classifier
-                eval_results = classifier.evaluate(X_test, y_test)
+                eval_results = classifier.evaluate(X_test, y_test, vectorizer_name)
 
                 # Save the results
                 self.save_results(vectorizer_name, classifier_name, eval_results)
 
     def save_results(self, vectorizer_name, classifier_name, eval_results):
         # Define a directory for saving the results
-        results_dir = os.path.join("sentiment_analysis_movie_reviews", "reports", vectorizer_name, classifier_name)
+        results_dir = os.path.join("reports", vectorizer_name, classifier_name)
         os.makedirs(results_dir, exist_ok=True)
 
         # Save the evaluation results in a text file
