@@ -141,7 +141,7 @@ class WebScraper:
         Returns a DataFrame with reviews and rating for random movies from a range of popular movies.
         """
         movie_ids = set(movie_ids)
-        all_reviews = []
+        all_reviews = set()
         total_reviews_required = num_movies * num_reviews_per_movie
         current_reviews_count = 0
         reviews_since_last_save = 0
@@ -149,7 +149,7 @@ class WebScraper:
             for movie_id in movie_ids:
                 try:
                     reviews = self.get_reviews(movie_id, num_reviews_per_movie, language)
-                    all_reviews.extend(reviews)
+                    all_reviews.update(reviews)
                     current_reviews_count += len(reviews)
                     reviews_since_last_save += len(reviews)
                 except Exception as e:
