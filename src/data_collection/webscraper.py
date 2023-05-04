@@ -36,7 +36,7 @@ class WebScraper:
             # ratingFilter=0: Show all reviews regardless of their score
             # start={25*(i-1)}: Determine the starting index for every page, 
             # but page 1 has starting index = 0, therefore i-1.
-            url = f"https://www.imdb.com/title/{id}/reviews/_ajax?sort=helpfulnessScore&dir=desc&ratingFilter=0&start={25*(i-1)}"
+            url = f"https://www.imdb.com/title/{id}/reviews/_ajax?sort=submissionDate&dir=desc&ratingFilter=0&start={25*(i-1)}"
             review_urls.append(url)
         return review_urls
     
@@ -47,9 +47,10 @@ class WebScraper:
 
         reviews = []
         response_fail_counter = 0
-        i = 1
+        start_index = 0
+        review_set = set()  # Make sure to only get unique reviews (set).
         while len(reviews) < num_reviews:
-            url = f"https://www.imdb.com/title/{movie_id}/reviews/_ajax?sort=helpfulnessScore&dir=desc&ratingFilter=0&start={25*(i-1)}"
+            url = f"https://www.imdb.com/title/{movie_id}/reviews/_ajax?sort=submissionDate&dir=desc&ratingFilter=0&start={start_index}"
             print(f"URL: {url}")
             response = requests.get(url, headers=self.headers)
             if response.status_code != 200:
@@ -74,17 +75,19 @@ class WebScraper:
                     except:
                         det_language = None
 
-                    if det_language == language:
+                    if det_language == language and (title, text) not in review_set:
                         reviews.append({ "review_title": title, "text": text, "rating": rating})
+                        review_set.add((title,text))
                 
                 # If no new reviews are added, break the loop
                 if len(reviews) == prev_len:
                     break
 
-                i += 1
-                time.sleep(1)  # Sleep between requests to not get blocked
+                start_index += 25  # Update start_index with 25, to make sure to go to the next site and dont get duplicate reviews.
+                time.sleep(0.5)  # Sleep between requests to not get blocked
         print(f"Number of collected reviews: {len(reviews)}")
         return reviews
+
 
         
 
@@ -113,8 +116,8 @@ class WebScraper:
         rating_min = 1.0
         rating_max = 10.0
         start_search = 1
-        genres =["action", "family", "music", "documentary", "sci-fi", "horror", 
-                 "adventure", "history", "thriller", "fantasy", 
+        genres =["action", "family", "sci-fi", "horror", 
+                 "adventure", "thriller", "fantasy", 
                  "romance", "sport", "musical", "western", "crime", "drama", 
                  "animation", "mystery", "comedy", "war", "biography"]
 
@@ -131,13 +134,13 @@ class WebScraper:
             movie_ids.update(ids)
             start_search += len(ids)
 
-        return random.sample(list(movie_ids), num_movies)
+        return list(movie_ids)
     
     def get_movie_reviews(self, num_movies, movie_ids, num_reviews_per_movie, language="en"):
         """
         Returns a DataFrame with reviews and rating for random movies from a range of popular movies.
         """
-        
+        movie_ids = set(movie_ids)
         all_reviews = []
         total_reviews_required = num_movies * num_reviews_per_movie
         current_reviews_count = 0
@@ -155,7 +158,7 @@ class WebScraper:
                 if reviews_since_last_save >= 1000:
                     print("Saving after at least 1000 collected reviews since last save...")
                     reviews_df = self.reviews_to_dataframe(all_reviews)
-                    out_path = os.path.join("..", "..","data", "imdb_reviews_rand.csv")
+                    out_path = os.path.join("..", "..","data", "imdb_reviews_rand2.csv")
                     reviews_df.to_csv(path_or_buf=out_path)
                     del reviews_df
                     print("Done with Saving. Continuing to collect reviews.")
@@ -169,7 +172,7 @@ class WebScraper:
             if current_reviews_count < total_reviews_required:
                 num_movies_to_fetch = max((total_reviews_required - current_reviews_count) // num_reviews_per_movie, 1)
                 new_movie_ids = self.get_random_movie_ids(num_movies_to_fetch, self.random_seed)
-                movie_ids.extend(new_movie_ids)
+                movie_ids.update(new_movie_ids)
 
         return self.reviews_to_dataframe(all_reviews)
     
@@ -178,14 +181,14 @@ class WebScraper:
         plt.title("Distribution of the Ratings in Dataset")
         plt.xlabel("Rating")
         plt.ylabel("Frequency")
-        save_path = save_path = os.path.join("..", "..", "figures", "Data_distribution.png")
+        save_path = save_path = os.path.join("..", "..", "figures", "Data_distribution2.png")
         plt.savefig(save_path)
 
     
 if __name__ == "__main__":
     load_ids = False
     num_movies = 500
-    num_reviews_per_movie = 20
+    num_reviews_per_movie = 100
     random_seed = 42
     language = "en"
     scraper = WebScraper(random_seed=random_seed)
@@ -199,6 +202,6 @@ if __name__ == "__main__":
         scraper.save_movie_ids(movie_ids, movie_ids_file)
 
     reviews_df = scraper.get_movie_reviews(num_movies, movie_ids, num_reviews_per_movie, language)
-    out_path = os.path.join("..", "..","data", "imdb_reviews_rand.csv")
+    out_path = os.path.join("..", "..","data", "imdb_reviews_rand2.csv")
     reviews_df.to_csv(path_or_buf=out_path)
     scraper.data_evaluation(reviews_df)
