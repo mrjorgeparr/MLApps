@@ -8,7 +8,8 @@ from contractions import fix
 import pandas as pd
 
 class TextPreprocessor:
-    def __init__(self, remove_stopwords=True, lemmatize=True):
+    def __init__(self,input_path, remove_stopwords=True, lemmatize=True):
+        self.data_df = pd.read_csv(input_path)
         self.remove_stopwords = remove_stopwords
         self.lemmatize = lemmatize
         self.lemmatizer = WordNetLemmatizer()
@@ -51,10 +52,12 @@ class TextPreprocessor:
 
         return cleaned_text
 
-    def preprocess_corpus(self, input_path, output_filename, text_column="text", label_column="rating"):
-        data_df = pd.read_csv(input_path)
-        corpus = data_df[text_column]
-        labels = data_df[label_column]
+    def preprocess_corpus(self, output_filename, text_column="text", label_column="rating"):
+        print("Preprocessing Text Corpus...")
+        self.data_df.dropna(subset=[text_column], inplace=True)
+        self.data_df.dropna(subset=[label_column], inplace=True)
+        corpus = self.data_df[text_column]
+        labels = self.data_df[label_column]
 
         preprocessed_corpus = [nltk.word_tokenize(self.preprocess_text(text)) for text in corpus]
 
@@ -62,10 +65,30 @@ class TextPreprocessor:
 
         output_df.to_csv(output_filename, index=False, encoding='utf-8')
 
+        print("Done")
         print(f"Length of preprocessed corpus in preprocesser:{len(preprocessed_corpus)}")
         print(f"Length of labels in preprocesser:{len(labels)}")
         return preprocessed_corpus, labels
     
+
+    def preprocess_labels(self, label_column="rating"):
+        print("Cleaning Labels...")
+
+        numeric_pattern = re.compile(r'^\d+$')
+
+        def to_integer(x):
+            if numeric_pattern.match(x):
+                return int(x)
+            else:
+                return None
+
+        self.data_df[label_column] = self.data_df[label_column].apply(to_integer)
+        self.data_df = self.data_df[self.data_df[label_column].notnull()]
+        self.data_df.dropna(subset=[label_column], inplace=True)
+
+        print("Done")
+
+        return 
 
 if __name__ == "__main__":
     preprocesser = TextPreprocessor()
