@@ -38,7 +38,7 @@ class BaseClassifier:
     def predict(self, X_test):
         return self.model.predict(X_test)
 
-    def plot_confusion_matrix(self, y_test, y_pred, classifier_name, suffix):
+    def plot_confusion_matrix(self, y_test, y_pred, classifier_name, vectorizer_name):
         # Create Confustion matrix
         conf_matr = confusion_matrix(y_test, y_pred, normalize='true')
 
@@ -51,7 +51,7 @@ class BaseClassifier:
         plt.title("Confusion Matrix")
 
         # Create path for saving the matrix
-        plot_name = suffix + "_" + classifier_name + "_confusion_matrix.png"
+        plot_name = vectorizer_name + "_" + classifier_name + "_confusion_matrix.png"
         save_path = os.path.join("..", "..", "figures", plot_name)
 
         
@@ -77,7 +77,7 @@ class BaseClassifier:
         """
         Maps the classes to only two classes
         """
-        
+
         if 1 <= rating <= 5:
             return 1
         elif 6 <= rating <= 10:
@@ -94,7 +94,7 @@ class BaseClassifier:
         
         y_test_reduced = [self.map_to_two_class(y) for y in y_test]
         y_pred_reduced = [self.map_to_two_class(y) for y in y_pred]
-        self.plot_confusion_matrix(y_test_reduced, y_pred_reduced, vectorizer_name + "_two_class")
+        self.plot_confusion_matrix(y_test_reduced, y_pred_reduced, classifier_name, vectorizer_name + "_two_class")
 
         accuracy = accuracy_score(y_test_reduced, y_pred_reduced)
         f1 = f1_score(y_test_reduced, y_pred_reduced, average='weighted')
@@ -144,7 +144,7 @@ class BaseClassifier:
         
         y_test_reduced = [self.map_to_four_class(y) for y in y_test]
         y_pred_reduced = [self.map_to_four_class(y) for y in y_pred]
-        self.plot_confusion_matrix(y_test_reduced, y_pred_reduced, vectorizer_name + "_four_class")
+        self.plot_confusion_matrix(y_test_reduced, y_pred_reduced, classifier_name, vectorizer_name + "_four_class")
 
         accuracy = accuracy_score(y_test_reduced, y_pred_reduced)
         f1 = f1_score(y_test_reduced, y_pred_reduced, average='weighted')
@@ -194,7 +194,7 @@ class BaseClassifier:
 
         y_pred = self.predict(X_test)
 
-        self.plot_confusion_matrix(y_test, y_pred, vectorizer_name + "_all_class")
+        self.plot_confusion_matrix(y_test, y_pred, classifier_name, vectorizer_name + "_all_class")
 
 
         accuracy = accuracy_score(y_test, y_pred)
