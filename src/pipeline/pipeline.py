@@ -22,7 +22,7 @@ class Pipeline:
         self.labels = None
 
         # Initialize components
-        self.preprocessor = TextPreprocessor()
+        self.preprocessor = TextPreprocessor(self.raw_data_path)
         self.vectorizers = {
             "bow": BoWVectorizer(),
             "word2vec": Word2VecVectorizer()
@@ -42,7 +42,8 @@ class Pipeline:
     def preprocess(self):
 
         output_filename = os.path.join(self.processed_data_path, 'preprocessed_data.csv')
-        self.preprocessed_data, self.labels = self.preprocessor.preprocess_corpus(self.raw_data_path, output_filename)
+        self.preprocessor.preprocess_labels(label_column="rating")
+        self.preprocessed_data, self.labels = self.preprocessor.preprocess_corpus(output_filename)
 
 
     def execute(self):
@@ -89,5 +90,5 @@ class Pipeline:
 
 
 if __name__ == "__main__":
-    pipeline = Pipeline(r"C:\Users\svenb\Desktop\MLApps\data\merged_reviews.csv", r"C:\Users\svenb\Desktop\MLApps\src\data_collection")
+    pipeline = Pipeline(r"C:\Users\svenb\Desktop\MLApps\data\merged_reviews.csv", r"C:\Users\svenb\Desktop\MLApps\data")
     pipeline.execute()
