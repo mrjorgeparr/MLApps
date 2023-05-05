@@ -1,3 +1,4 @@
+import os
 import re
 import nltk
 from nltk.corpus import stopwords
@@ -66,3 +67,8 @@ class TextPreprocessor:
         return preprocessed_corpus, labels
     
 
+if __name__ == "__main__":
+    preprocesser = TextPreprocessor()
+    in_path = os.path.join("..","..","data","merged_reviews.csv")
+    out_path = os.path.join("..","..","data","preprocessed_data.csv")
+    preprocesser.preprocess_corpus(in_path,out_path)

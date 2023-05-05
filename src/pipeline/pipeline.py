@@ -89,5 +89,5 @@ class Pipeline:
 
 
 if __name__ == "__main__":
-    pipeline = Pipeline(r"C:\Users\svenb\Desktop\MLApps\src\data_collection\imdb_reviews_rand.csv", r"C:\Users\svenb\Desktop\MLApps\src\data_collection")
+    pipeline = Pipeline(r"C:\Users\svenb\Desktop\MLApps\data\merged_reviews.csv", r"C:\Users\svenb\Desktop\MLApps\src\data_collection")
     pipeline.execute()

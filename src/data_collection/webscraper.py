@@ -59,7 +59,7 @@ class WebScraper:
             else:
                 soup = BeautifulSoup(response.text, "html.parser")
                 prev_len = len(reviews)
-                
+
                 for review in soup.find_all("div", {'class': 'review-container'}):
                     rating = review.find("span", {"class": "rating-other-user-rating"})
                     if rating:
@@ -78,12 +78,15 @@ class WebScraper:
                     if det_language == language and (title, text) not in review_set:
                         reviews.append({ "review_title": title, "text": text, "rating": rating})
                         review_set.add((title,text))
-                
+
+                # Calculate the actual number of collected reviews in the current iteration
+                collected_reviews = len(reviews) - prev_len
+
                 # If no new reviews are added, break the loop
-                if len(reviews) == prev_len:
+                if collected_reviews == 0:
                     break
 
-                start_index += 25  # Update start_index with 25, to make sure to go to the next site and dont get duplicate reviews.
+                start_index += collected_reviews
                 time.sleep(0.5)  # Sleep between requests to not get blocked
         print(f"Number of collected reviews: {len(reviews)}")
         return reviews
@@ -93,7 +96,8 @@ class WebScraper:
 
     def reviews_to_dataframe(self, reviews):
         print(len(reviews))
-        return pd.DataFrame(reviews)
+        return pd.DataFrame([{"review_title": title, "text": text, "rating": rating} for title, text, rating in reviews])
+
     
     def get_movie_ids_from_search(self, start_year, end_year, min_rating, max_rating, genre, sort, start=1):
         """
@@ -125,14 +129,15 @@ class WebScraper:
                         "user_rating,desc", "num_votes,asc", "num_votes,desc"]
 
         while len(movie_ids) < num_movies:
-            start_year = random.randint(1990, 2015)
-            end_year = start_year + 5
+            start_year = random.randint(1970, 2023)
+            end_year = start_year + 10
             genre = random.choice(genres)
             sort = random.choice(sort_methods)
             
             ids = self.get_movie_ids_from_search(start_year, end_year, rating_min, rating_max, genre, sort, start_search)
             movie_ids.update(ids)
             start_search += len(ids)
+            print(len(movie_ids))
 
         return list(movie_ids)
     
@@ -147,18 +152,19 @@ class WebScraper:
         reviews_since_last_save = 0
         while current_reviews_count < total_reviews_required:
             for movie_id in movie_ids:
-                try:
-                    reviews = self.get_reviews(movie_id, num_reviews_per_movie, language)
-                    all_reviews.update(reviews)
-                    current_reviews_count += len(reviews)
-                    reviews_since_last_save += len(reviews)
-                except Exception as e:
-                    print(f"Error for movie ID {movie_id}: {e}")
-                print(f"Number of currently collected review: {current_reviews_count}")
+                #try:
+                reviews = self.get_reviews(movie_id, num_reviews_per_movie, language)
+                all_reviews_len_bef = len(all_reviews)
+                all_reviews.update((review['review_title'], review['text'], review['rating']) for review in reviews)
+                current_reviews_count += len(all_reviews) - all_reviews_len_bef
+                reviews_since_last_save += len(all_reviews) - all_reviews_len_bef
+                # except Exception as e:
+                #     print(f"Error for movie ID {movie_id}: {e}")
+                print(f"Number of currently collected review: {len(all_reviews)}")
                 if reviews_since_last_save >= 1000:
                     print("Saving after at least 1000 collected reviews since last save...")
                     reviews_df = self.reviews_to_dataframe(all_reviews)
-                    out_path = os.path.join("..", "..","data", "imdb_reviews_rand2.csv")
+                    out_path = os.path.join("..", "..","data", "imdb_reviews_rand3.csv")
                     reviews_df.to_csv(path_or_buf=out_path)
                     del reviews_df
                     print("Done with Saving. Continuing to collect reviews.")
@@ -187,8 +193,8 @@ class WebScraper:
     
 if __name__ == "__main__":
     load_ids = False
-    num_movies = 500
-    num_reviews_per_movie = 100
+    num_movies = 6000
+    num_reviews_per_movie = 1000
     random_seed = 42
     language = "en"
     scraper = WebScraper(random_seed=random_seed)
@@ -202,6 +208,6 @@ if __name__ == "__main__":
         scraper.save_movie_ids(movie_ids, movie_ids_file)
 
     reviews_df = scraper.get_movie_reviews(num_movies, movie_ids, num_reviews_per_movie, language)
-    out_path = os.path.join("..", "..","data", "imdb_reviews_rand2.csv")
+    out_path = os.path.join("..", "..","data", "imdb_reviews_rand3.csv")
     reviews_df.to_csv(path_or_buf=out_path)
     scraper.data_evaluation(reviews_df)
