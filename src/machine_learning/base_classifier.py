@@ -21,7 +21,7 @@ class BaseClassifier:
         print(f"Starting training for classifier: {self.model.__class__.__name__}")
         # Initialize the RandomizedSearch. n_iter can be adjusted for a tradeoff between quality and performance.
         self.rand_search = RandomizedSearchCV(self.model, self.search_params, cv=cv, scoring=metric_score,
-                                               n_jobs=-1, n_iter=n_iter, random_state=self.random_state)
+                                               n_jobs=-1, n_iter=n_iter, random_state=self.random_state, verbose=1)
         
         self.rand_search.fit(X_train, y_train)
         self.model = self.rand_search.best_estimator_
@@ -91,7 +91,7 @@ class BaseClassifier:
 
         y_pred = self.predict(X_test)
 
-        
+        # Reduce the test and prediction data to two classes
         y_test_reduced = [self.map_to_two_class(y) for y in y_test]
         y_pred_reduced = [self.map_to_two_class(y) for y in y_pred]
         self.plot_confusion_matrix(y_test_reduced, y_pred_reduced, classifier_name, vectorizer_name + "_two_class")
@@ -141,7 +141,7 @@ class BaseClassifier:
 
         y_pred = self.predict(X_test)
 
-        
+        # Reduce the test and prediction data to four classes.
         y_test_reduced = [self.map_to_four_class(y) for y in y_test]
         y_pred_reduced = [self.map_to_four_class(y) for y in y_pred]
         self.plot_confusion_matrix(y_test_reduced, y_pred_reduced, classifier_name, vectorizer_name + "_four_class")

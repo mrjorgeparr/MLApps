@@ -34,32 +34,35 @@ class Pipeline:
         # Initialize components
         self.preprocessor = TextPreprocessor(self.raw_data_path)
         self.vectorizers = {
-            "bow_count": BoWVectorizer(filename= self.processed_data_path,
-                                       text_column=self.preprocess_text_column,
-                                       method="count"),
-            "bow_tfidf": BoWVectorizer(filename= self.processed_data_path,
-                                       text_column=self.preprocess_text_column,
-                                       method="tfidf"),
-            "word2vec_1gram": Word2VecVectorizer(filename= self.processed_data_path,
-                                           text_column=self.preprocess_text_column,
-                                           n=1),
-            "word2vec_3gram": Word2VecVectorizer(filename= self.processed_data_path,
-                                           text_column=self.preprocess_text_column,
-                                           n=3),
-            "word2vec_1gram_w8": Word2VecVectorizer(filename= self.processed_data_path,
-                                           text_column=self.preprocess_text_column,
-                                           n=1, window=8),
+            # "bow_count": BoWVectorizer(filename= self.processed_data_path,
+            #                            text_column=self.preprocess_text_column,
+            #                            method="count"),
+            # "bow_tfidf": BoWVectorizer(filename= self.processed_data_path,
+            #                            text_column=self.preprocess_text_column,
+            #                            method="tfidf"),
+            # "word2vec_1gram": Word2VecVectorizer(filename= self.processed_data_path,
+            #                                text_column=self.preprocess_text_column,
+            #                                n=1),
+            # "word2vec_3gram": Word2VecVectorizer(filename= self.processed_data_path,
+            #                                 text_column=self.preprocess_text_column,
+            #                                 n=3),
+            # "word2vec_1gram_w8": Word2VecVectorizer(filename= self.processed_data_path,
+            #                                text_column=self.preprocess_text_column,
+            #                                n=1, window=8),
+            "word2vec_5gram": Word2VecVectorizer(filename= self.processed_data_path,
+                                            text_column=self.preprocess_text_column,
+                                            n=5),
 
         }
         self.classifiers = {"Logistic Regression": LogisticRegressionClassifier(random_state=42, class_weight=None),
-                            "KNN": KNNClassifier(random_state=42),
-                            "GradientBoosting": GradientBoostingClassifier(random_state=42),
-                            "NeuralNetwork": NeuralNetworkClassifier(),
-                            "RandomForest": RandomForestClassifier(class_weight=None),
-                            "SVM": SVMClassifier(class_weight=None),
-                            "Logistic Regression_balance": LogisticRegressionClassifier(random_state=42, class_weight='balanced'),
-                            "RandomForest_balance": RandomForestClassifier(class_weight='balanced'),
-                            "SVM_balance": SVMClassifier(class_weight='balanced')
+                            # "KNN": KNNClassifier(random_state=42),
+                            # "GradientBoosting": GradientBoostingClassifier(random_state=42),
+                            # "NeuralNetwork": NeuralNetworkClassifier(),
+                            # "RandomForest": RandomForestClassifier(class_weight=None),
+                            # "SVM": SVMClassifier(class_weight=None),
+                            # "Logistic Regression_balance": LogisticRegressionClassifier(random_state=42, class_weight='balanced'),
+                            # "RandomForest_balance": RandomForestClassifier(class_weight='balanced'),
+                            # "SVM_balance": SVMClassifier(class_weight='balanced')
                             }  # More classifiers can be added here
 
     def add_preprocessor(self, preprocessor):
@@ -130,7 +133,7 @@ class Pipeline:
 
 if __name__ == "__main__":
     pipeline = Pipeline(raw_data_path= r"C:\Users\svenb\Desktop\MLApps\data\merged_reviews.csv", 
-                        preprocess_data_path= r"C:\Users\svenb\Desktop\MLApps\data\test_data.csv",
+                        preprocess_data_path= r"C:\Users\svenb\Desktop\MLApps\data\preprocessed_data2.csv",
                         load_preprocessed=True,
                         preprocess_text_column="cleaned_text")
     pipeline.execute()
