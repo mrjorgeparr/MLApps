@@ -1,0 +1,44 @@
+precision_weighted: 0.7310984122784431
+f1_weighted: 0.7257555944273671
+accuracy: 0.7405660377358491
+recall_weighted: 0.7405660377358491
+classification_report:               precision    recall  f1-score   support
+
+           1       0.67      0.46      0.55        72
+           2       0.76      0.89      0.82       140
+
+    accuracy                           0.74       212
+   macro avg       0.72      0.67      0.68       212
+weighted avg       0.73      0.74      0.73       212
+
+optimization_results: {'mean_fit_time': array([1.47566001, 1.71666662, 1.04866632, 1.6106542 , 2.5356706 ,
+       5.56766001, 7.25306392, 5.97504989, 6.8171734 , 2.02943826]), 'std_fit_time': array([0.17297459, 0.43644665, 0.04283633, 0.37511418, 0.39136543,
+       0.57245441, 0.09067244, 0.56446622, 0.31873364, 0.19351494]), 'mean_score_time': array([0.00333563, 0.00266147, 0.00266584, 0.01199897, 0.00366497,
+       0.00300177, 0.00166551, 0.00232665, 0.0009892 , 0.00165757]), 'std_score_time': array([4.73787983e-04, 4.71201776e-04, 4.74870374e-04, 1.27244162e-02,
+       4.66659043e-04, 4.17667495e-06, 4.71482786e-04, 4.72443378e-04,
+       1.57151426e-05, 4.86434723e-04]), 'param_solver': masked_array(data=['sgd', 'sgd', 'sgd', 'sgd', 'adam', 'adam', 'adam',
+                   'adam', 'adam', 'adam'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_hidden_layer_sizes': masked_array(data=[(100,), (50, 50), (50,), (50,), (50, 50), (100,),
+                   (50,), (50,), (100,), (50, 50)],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_alpha': masked_array(data=[0.01, 0.001, 0.001, 0.01, 0.01, 0.01, 0.001, 0.001,
+                   0.01, 0.001],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_activation': masked_array(data=['tanh', 'relu', 'tanh', 'relu', 'tanh', 'tanh', 'relu',
+                   'tanh', 'relu', 'tanh'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'params': [{'solver': 'sgd', 'hidden_layer_sizes': (100,), 'alpha': 0.01, 'activation': 'tanh'}, {'solver': 'sgd', 'hidden_layer_sizes': (50, 50), 'alpha': 0.001, 'activation': 'relu'}, {'solver': 'sgd', 'hidden_layer_sizes': (50,), 'alpha': 0.001, 'activation': 'tanh'}, {'solver': 'sgd', 'hidden_layer_sizes': (50,), 'alpha': 0.01, 'activation': 'relu'}, {'solver': 'adam', 'hidden_layer_sizes': (50, 50), 'alpha': 0.01, 'activation': 'tanh'}, {'solver': 'adam', 'hidden_layer_sizes': (100,), 'alpha': 0.01, 'activation': 'tanh'}, {'solver': 'adam', 'hidden_layer_sizes': (50,), 'alpha': 0.001, 'activation': 'relu'}, {'solver': 'adam', 'hidden_layer_sizes': (50,), 'alpha': 0.001, 'activation': 'tanh'}, {'solver': 'adam', 'hidden_layer_sizes': (100,), 'alpha': 0.01, 'activation': 'relu'}, {'solver': 'adam', 'hidden_layer_sizes': (50, 50), 'alpha': 0.001, 'activation': 'tanh'}], 'split0_test_score': array([0.20567376, 0.20567376, 0.20567376, 0.20567376, 0.30141844,
+       0.28723404, 0.26950355, 0.30496454, 0.28723404, 0.26950355]), 'split1_test_score': array([0.20212766, 0.20212766, 0.20212766, 0.20212766, 0.25177305,
+       0.25177305, 0.26595745, 0.25177305, 0.25531915, 0.25886525]), 'split2_test_score': array([0.20640569, 0.20640569, 0.20640569, 0.20640569, 0.27046263,
+       0.28469751, 0.27758007, 0.28113879, 0.28469751, 0.30604982]), 'mean_test_score': array([0.2047357 , 0.2047357 , 0.2047357 , 0.2047357 , 0.27455137,
+       0.2745682 , 0.27101369, 0.27929213, 0.27575023, 0.27813954]), 'std_test_score': array([0.00186822, 0.00186822, 0.00186822, 0.00186822, 0.02047282,
+       0.01615184, 0.00486359, 0.02175456, 0.01448402, 0.02020778]), 'rank_test_score': array([7, 7, 7, 7, 5, 4, 6, 1, 3, 2])}

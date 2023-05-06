@@ -1,0 +1,39 @@
+precision_weighted: 0.6122641509433963
+f1_weighted: 0.5690502616140797
+accuracy: 0.660377358490566
+recall_weighted: 0.660377358490566
+classification_report:               precision    recall  f1-score   support
+
+           1       0.50      0.08      0.14        72
+           2       0.67      0.96      0.79       140
+
+    accuracy                           0.66       212
+   macro avg       0.58      0.52      0.47       212
+weighted avg       0.61      0.66      0.57       212
+
+optimization_results: {'mean_fit_time': array([0.00233428, 0.00299923, 0.00233301, 0.002666  , 0.00583609,
+       0.00199938, 0.00299994, 0.00233285, 0.00199993, 0.00199978]), 'std_fit_time': array([4.70920948e-04, 8.15172155e-04, 4.71145933e-04, 4.70864843e-04,
+       4.36158937e-03, 5.15042996e-07, 4.49566384e-07, 4.71598391e-04,
+       4.05233662e-07, 9.98958356e-07]), 'mean_score_time': array([1.20440356, 1.14807216, 1.20474895, 1.22275074, 0.98139636,
+       0.9567229 , 0.93838874, 0.95607495, 0.71036394, 0.72369432]), 'std_score_time': array([0.06101573, 0.05780618, 0.06432506, 0.01037155, 0.03785859,
+       0.0139122 , 0.01960271, 0.01668281, 0.00731791, 0.02104463]), 'param_weights': masked_array(data=['uniform', 'distance', 'distance', 'distance',
+                   'uniform', 'distance', 'distance', 'distance',
+                   'uniform', 'uniform'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_n_neighbors': masked_array(data=[3, 9, 7, 3, 11, 7, 3, 5, 11, 9],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_algorithm': masked_array(data=['auto', 'brute', 'brute', 'auto', 'auto', 'auto',
+                   'brute', 'auto', 'brute', 'brute'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'params': [{'weights': 'uniform', 'n_neighbors': 3, 'algorithm': 'auto'}, {'weights': 'distance', 'n_neighbors': 9, 'algorithm': 'brute'}, {'weights': 'distance', 'n_neighbors': 7, 'algorithm': 'brute'}, {'weights': 'distance', 'n_neighbors': 3, 'algorithm': 'auto'}, {'weights': 'uniform', 'n_neighbors': 11, 'algorithm': 'auto'}, {'weights': 'distance', 'n_neighbors': 7, 'algorithm': 'auto'}, {'weights': 'distance', 'n_neighbors': 3, 'algorithm': 'brute'}, {'weights': 'distance', 'n_neighbors': 5, 'algorithm': 'auto'}, {'weights': 'uniform', 'n_neighbors': 11, 'algorithm': 'brute'}, {'weights': 'uniform', 'n_neighbors': 9, 'algorithm': 'brute'}], 'split0_test_score': array([0.22340426, 0.22695035, 0.21276596, 0.23049645, 0.22695035,
+       0.21276596, 0.23049645, 0.21985816, 0.22695035, 0.21985816]), 'split1_test_score': array([0.15957447, 0.21631206, 0.20921986, 0.16312057, 0.22340426,
+       0.20921986, 0.16312057, 0.20567376, 0.22340426, 0.23049645]), 'split2_test_score': array([0.15302491, 0.23131673, 0.25266904, 0.20284698, 0.24199288,
+       0.25266904, 0.20284698, 0.23487544, 0.24199288, 0.24199288]), 'mean_test_score': array([0.17866788, 0.22485971, 0.22488495, 0.19882133, 0.2307825 ,
+       0.22488495, 0.19882133, 0.22013579, 0.2307825 , 0.2307825 ]), 'std_test_score': array([0.0317462 , 0.00630149, 0.01969958, 0.02765299, 0.00805805,
+       0.01969958, 0.02765299, 0.01192315, 0.00805805, 0.00903873]), 'rank_test_score': array([10,  6,  4,  8,  2,  4,  8,  7,  2,  1])}

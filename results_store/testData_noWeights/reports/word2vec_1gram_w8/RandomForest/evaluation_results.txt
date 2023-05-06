@@ -1,0 +1,44 @@
+precision_weighted: 0.752448969743763
+f1_weighted: 0.7472896756172478
+accuracy: 0.7594339622641509
+recall_weighted: 0.7594339622641509
+classification_report:               precision    recall  f1-score   support
+
+           1       0.71      0.50      0.59        72
+           2       0.78      0.89      0.83       140
+
+    accuracy                           0.76       212
+   macro avg       0.74      0.70      0.71       212
+weighted avg       0.75      0.76      0.75       212
+
+optimization_results: {'mean_fit_time': array([6.57582402, 3.63746405, 3.44279695, 6.77450132, 3.21737329,
+       6.16803042, 1.48973552, 3.0871404 , 1.57091626, 4.11539586]), 'std_fit_time': array([0.07157332, 0.0753767 , 0.12362408, 0.19803908, 0.01796967,
+       0.01818016, 0.01721128, 0.02020406, 0.08820696, 0.03035487]), 'mean_score_time': array([0.04533386, 0.02533396, 0.02333426, 0.04684067, 0.02366773,
+       0.0346663 , 0.02533507, 0.03233393, 0.02566608, 0.02933272]), 'std_score_time': array([0.00094291, 0.00124806, 0.00047171, 0.00164753, 0.00169967,
+       0.00376961, 0.00047121, 0.00543593, 0.00124728, 0.0009401 ]), 'param_n_estimators': masked_array(data=[200, 100, 100, 200, 100, 200, 100, 200, 100, 200],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_min_samples_split': masked_array(data=[5, 2, 5, 5, 2, 2, 2, 5, 2, 2],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_min_samples_leaf': masked_array(data=[1, 1, 1, 1, 1, 2, 2, 1, 2, 1],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_max_depth': masked_array(data=[None, 30, None, 30, None, 20, 20, 30, None, None],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_criterion': masked_array(data=['entropy', 'entropy', 'entropy', 'entropy', 'entropy',
+                   'entropy', 'gini', 'gini', 'gini', 'entropy'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'params': [{'n_estimators': 200, 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_depth': None, 'criterion': 'entropy'}, {'n_estimators': 100, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_depth': 30, 'criterion': 'entropy'}, {'n_estimators': 100, 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_depth': None, 'criterion': 'entropy'}, {'n_estimators': 200, 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_depth': 30, 'criterion': 'entropy'}, {'n_estimators': 100, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_depth': None, 'criterion': 'entropy'}, {'n_estimators': 200, 'min_samples_split': 2, 'min_samples_leaf': 2, 'max_depth': 20, 'criterion': 'entropy'}, {'n_estimators': 100, 'min_samples_split': 2, 'min_samples_leaf': 2, 'max_depth': 20, 'criterion': 'gini'}, {'n_estimators': 200, 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_depth': 30, 'criterion': 'gini'}, {'n_estimators': 100, 'min_samples_split': 2, 'min_samples_leaf': 2, 'max_depth': None, 'criterion': 'gini'}, {'n_estimators': 200, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_depth': None, 'criterion': 'entropy'}], 'split0_test_score': array([0.25531915, 0.25531915, 0.24822695, 0.25886525, 0.21985816,
+       0.23758865, 0.25177305, 0.25886525, 0.25177305, 0.23404255]), 'split1_test_score': array([0.25886525, 0.24468085, 0.25886525, 0.23758865, 0.25531915,
+       0.26241135, 0.26950355, 0.24113475, 0.25531915, 0.26950355]), 'split2_test_score': array([0.27402135, 0.25622776, 0.27402135, 0.25266904, 0.24911032,
+       0.27402135, 0.26690391, 0.27402135, 0.26690391, 0.25622776]), 'mean_test_score': array([0.26273525, 0.25207592, 0.26037118, 0.24970765, 0.24142921,
+       0.25800712, 0.26272684, 0.25800712, 0.2579987 , 0.25325795]), 'std_test_score': array([0.00811072, 0.00524224, 0.01058422, 0.00893498, 0.01546221,
+       0.01519613, 0.00781787, 0.0134396 , 0.00646121, 0.0146284 ]), 'rank_test_score': array([ 1,  8,  3,  9, 10,  4,  2,  4,  6,  7])}

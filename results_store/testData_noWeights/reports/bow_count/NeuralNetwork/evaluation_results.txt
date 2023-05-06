@@ -1,0 +1,45 @@
+precision_weighted: 0.747234873129473
+f1_weighted: 0.7473495058400719
+accuracy: 0.7547169811320755
+recall_weighted: 0.7547169811320755
+classification_report:               precision    recall  f1-score   support
+
+           1       0.67      0.54      0.60        72
+           2       0.79      0.86      0.82       140
+
+    accuracy                           0.75       212
+   macro avg       0.73      0.70      0.71       212
+weighted avg       0.75      0.75      0.75       212
+
+optimization_results: {'mean_fit_time': array([167.4907879 , 106.75389465, 103.16333389, 102.2170403 ,
+        16.75610725,  36.02326226,  22.26521683,  22.45714951,
+        26.9078807 ,  13.04657046]), 'std_fit_time': array([0.90518331, 1.60839764, 2.06324338, 3.26618313, 1.00423439,
+       0.2116998 , 0.54325528, 0.79937836, 0.52251893, 0.25490038]), 'mean_score_time': array([0.00433334, 0.01233355, 0.01066677, 0.01233419, 0.00999912,
+       0.01600417, 0.01299969, 0.00700275, 0.00466704, 0.00566904]), 'std_score_time': array([1.88677398e-03, 2.49328669e-03, 2.49867758e-03, 4.19074433e-03,
+       1.41383084e-03, 1.63394666e-03, 4.54309136e-03, 3.82626950e-06,
+       9.43417065e-04, 4.74348821e-04]), 'param_solver': masked_array(data=['sgd', 'sgd', 'sgd', 'sgd', 'adam', 'adam', 'adam',
+                   'adam', 'adam', 'adam'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_hidden_layer_sizes': masked_array(data=[(100,), (50, 50), (50,), (50,), (50, 50), (100,),
+                   (50,), (50,), (100,), (50, 50)],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_alpha': masked_array(data=[0.01, 0.001, 0.001, 0.01, 0.01, 0.01, 0.001, 0.001,
+                   0.01, 0.001],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_activation': masked_array(data=['tanh', 'relu', 'tanh', 'relu', 'tanh', 'tanh', 'relu',
+                   'tanh', 'relu', 'tanh'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'params': [{'solver': 'sgd', 'hidden_layer_sizes': (100,), 'alpha': 0.01, 'activation': 'tanh'}, {'solver': 'sgd', 'hidden_layer_sizes': (50, 50), 'alpha': 0.001, 'activation': 'relu'}, {'solver': 'sgd', 'hidden_layer_sizes': (50,), 'alpha': 0.001, 'activation': 'tanh'}, {'solver': 'sgd', 'hidden_layer_sizes': (50,), 'alpha': 0.01, 'activation': 'relu'}, {'solver': 'adam', 'hidden_layer_sizes': (50, 50), 'alpha': 0.01, 'activation': 'tanh'}, {'solver': 'adam', 'hidden_layer_sizes': (100,), 'alpha': 0.01, 'activation': 'tanh'}, {'solver': 'adam', 'hidden_layer_sizes': (50,), 'alpha': 0.001, 'activation': 'relu'}, {'solver': 'adam', 'hidden_layer_sizes': (50,), 'alpha': 0.001, 'activation': 'tanh'}, {'solver': 'adam', 'hidden_layer_sizes': (100,), 'alpha': 0.01, 'activation': 'relu'}, {'solver': 'adam', 'hidden_layer_sizes': (50, 50), 'alpha': 0.001, 'activation': 'tanh'}], 'split0_test_score': array([0.30851064, 0.28014184, 0.29787234, 0.32978723, 0.30496454,
+       0.31205674, 0.30141844, 0.33333333, 0.28368794, 0.29078014]), 'split1_test_score': array([0.30141844, 0.31560284, 0.30851064, 0.30851064, 0.29432624,
+       0.30851064, 0.30141844, 0.28368794, 0.30496454, 0.28723404]), 'split2_test_score': array([0.30960854, 0.29181495, 0.29893238, 0.29893238, 0.29181495,
+       0.28469751, 0.30960854, 0.29537367, 0.3024911 , 0.3024911 ]), 'mean_test_score': array([0.30651254, 0.29585321, 0.30177179, 0.31241009, 0.29703524,
+       0.30175496, 0.30414847, 0.30413165, 0.29704786, 0.29350176]), 'std_test_score': array([0.00362985, 0.01475582, 0.0047847 , 0.01289469, 0.00569982,
+       0.01214801, 0.00386085, 0.02119265, 0.0095007 , 0.0065192 ]), 'rank_test_score': array([ 2,  9,  5,  1,  8,  6,  3,  4,  7, 10])}

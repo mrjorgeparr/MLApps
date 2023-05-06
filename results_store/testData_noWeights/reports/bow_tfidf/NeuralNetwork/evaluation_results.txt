@@ -1,0 +1,44 @@
+precision_weighted: 0.7588291175861114
+f1_weighted: 0.73842559161249
+accuracy: 0.7594339622641509
+recall_weighted: 0.7594339622641509
+classification_report:               precision    recall  f1-score   support
+
+           1       0.76      0.43      0.55        72
+           2       0.76      0.93      0.84       140
+
+    accuracy                           0.76       212
+   macro avg       0.76      0.68      0.69       212
+weighted avg       0.76      0.76      0.74       212
+
+optimization_results: {'mean_fit_time': array([167.47818653,  26.58998513, 109.72313046,  40.43594503,
+        23.99709121,  81.51151816,  33.99367722,  34.56873329,
+        52.83645042,  18.25412011]), 'std_fit_time': array([0.4628686 , 2.17406018, 0.24913164, 5.34219527, 1.15155684,
+       1.52572118, 0.82739485, 0.45467195, 0.3273724 , 1.08905223]), 'mean_score_time': array([0.0043455 , 0.00766635, 0.01166765, 0.00966771, 0.00966565,
+       0.01766642, 0.00900237, 0.00866985, 0.00533366, 0.00550556]), 'std_score_time': array([0.00126031, 0.00094561, 0.0052487 , 0.00169905, 0.00249683,
+       0.00330006, 0.00163171, 0.00125057, 0.00124611, 0.00108477]), 'param_solver': masked_array(data=['sgd', 'sgd', 'sgd', 'sgd', 'adam', 'adam', 'adam',
+                   'adam', 'adam', 'adam'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_hidden_layer_sizes': masked_array(data=[(100,), (50, 50), (50,), (50,), (50, 50), (100,),
+                   (50,), (50,), (100,), (50, 50)],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_alpha': masked_array(data=[0.01, 0.001, 0.001, 0.01, 0.01, 0.01, 0.001, 0.001,
+                   0.01, 0.001],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_activation': masked_array(data=['tanh', 'relu', 'tanh', 'relu', 'tanh', 'tanh', 'relu',
+                   'tanh', 'relu', 'tanh'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'params': [{'solver': 'sgd', 'hidden_layer_sizes': (100,), 'alpha': 0.01, 'activation': 'tanh'}, {'solver': 'sgd', 'hidden_layer_sizes': (50, 50), 'alpha': 0.001, 'activation': 'relu'}, {'solver': 'sgd', 'hidden_layer_sizes': (50,), 'alpha': 0.001, 'activation': 'tanh'}, {'solver': 'sgd', 'hidden_layer_sizes': (50,), 'alpha': 0.01, 'activation': 'relu'}, {'solver': 'adam', 'hidden_layer_sizes': (50, 50), 'alpha': 0.01, 'activation': 'tanh'}, {'solver': 'adam', 'hidden_layer_sizes': (100,), 'alpha': 0.01, 'activation': 'tanh'}, {'solver': 'adam', 'hidden_layer_sizes': (50,), 'alpha': 0.001, 'activation': 'relu'}, {'solver': 'adam', 'hidden_layer_sizes': (50,), 'alpha': 0.001, 'activation': 'tanh'}, {'solver': 'adam', 'hidden_layer_sizes': (100,), 'alpha': 0.01, 'activation': 'relu'}, {'solver': 'adam', 'hidden_layer_sizes': (50, 50), 'alpha': 0.001, 'activation': 'tanh'}], 'split0_test_score': array([0.20212766, 0.20567376, 0.20212766, 0.20567376, 0.28368794,
+       0.29432624, 0.28723404, 0.29432624, 0.30851064, 0.28723404]), 'split1_test_score': array([0.20567376, 0.20212766, 0.20212766, 0.20212766, 0.28368794,
+       0.30141844, 0.28014184, 0.27659574, 0.28723404, 0.27659574]), 'split2_test_score': array([0.20640569, 0.20640569, 0.20640569, 0.20640569, 0.3024911 ,
+       0.30604982, 0.28825623, 0.30960854, 0.28469751, 0.28469751]), 'mean_test_score': array([0.2047357 , 0.2047357 , 0.20355367, 0.2047357 , 0.28995566,
+       0.30059817, 0.2852107 , 0.29351018, 0.29348073, 0.28284243]), 'std_test_score': array([0.00186822, 0.00186822, 0.00201668, 0.00186822, 0.00886389,
+       0.00482115, 0.00360844, 0.01348977, 0.01067808, 0.00453684]), 'rank_test_score': array([ 7,  7, 10,  7,  4,  1,  5,  2,  3,  6])}

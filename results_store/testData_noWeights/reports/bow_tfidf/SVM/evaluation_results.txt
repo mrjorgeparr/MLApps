@@ -1,0 +1,36 @@
+precision_weighted: 0.7579100145137881
+f1_weighted: 0.7094532644887322
+accuracy: 0.7452830188679245
+recall_weighted: 0.7452830188679245
+classification_report:               precision    recall  f1-score   support
+
+           1       0.80      0.33      0.47        72
+           2       0.74      0.96      0.83       140
+
+    accuracy                           0.75       212
+   macro avg       0.77      0.65      0.65       212
+weighted avg       0.76      0.75      0.71       212
+
+optimization_results: {'mean_fit_time': array([0.59517837, 0.60151052, 0.66717927, 0.62251139, 0.71302565,
+       0.6850268 , 0.66269437, 0.71802902, 0.46001156, 0.42434565]), 'std_fit_time': array([0.05684117, 0.02475282, 0.06274482, 0.07813212, 0.03691451,
+       0.00535274, 0.03470095, 0.00941556, 0.0069591 , 0.00617197]), 'mean_score_time': array([0.16466721, 0.17766809, 0.16400043, 0.18366782, 0.17733447,
+       0.149333  , 0.13799993, 0.14299846, 0.1024971 , 0.0921572 ]), 'std_score_time': array([0.02206462, 0.01913611, 0.00245194, 0.03915715, 0.02015377,
+       0.00124777, 0.00489814, 0.00852362, 0.00509363, 0.00330863]), 'param_kernel': masked_array(data=['linear', 'rbf', 'linear', 'rbf', 'rbf', 'rbf',
+                   'linear', 'rbf', 'rbf', 'linear'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_degree': masked_array(data=[2, 2, 3, 4, 3, 2, 4, 3, 4, 3],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_C': masked_array(data=[0.1, 0.1, 1, 0.1, 0.1, 10, 10, 10, 1, 0.1],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'params': [{'kernel': 'linear', 'degree': 2, 'C': 0.1}, {'kernel': 'rbf', 'degree': 2, 'C': 0.1}, {'kernel': 'linear', 'degree': 3, 'C': 1}, {'kernel': 'rbf', 'degree': 4, 'C': 0.1}, {'kernel': 'rbf', 'degree': 3, 'C': 0.1}, {'kernel': 'rbf', 'degree': 2, 'C': 10}, {'kernel': 'linear', 'degree': 4, 'C': 10}, {'kernel': 'rbf', 'degree': 3, 'C': 10}, {'kernel': 'rbf', 'degree': 4, 'C': 1}, {'kernel': 'linear', 'degree': 3, 'C': 0.1}], 'split0_test_score': array([0.20567376, 0.20567376, 0.30141844, 0.20567376, 0.20567376,
+       0.27659574, 0.29787234, 0.27659574, 0.21985816, 0.20567376]), 'split1_test_score': array([0.20212766, 0.20212766, 0.28723404, 0.20212766, 0.20212766,
+       0.27304965, 0.26595745, 0.27304965, 0.22340426, 0.20212766]), 'split2_test_score': array([0.20640569, 0.20640569, 0.32384342, 0.20640569, 0.20640569,
+       0.29181495, 0.32384342, 0.29181495, 0.23843416, 0.20640569]), 'mean_test_score': array([0.2047357 , 0.2047357 , 0.3041653 , 0.2047357 , 0.2047357 ,
+       0.28048678, 0.29589107, 0.28048678, 0.22723219, 0.2047357 ]), 'std_test_score': array([0.00186822, 0.00186822, 0.0150714 , 0.00186822, 0.00186822,
+       0.00813999, 0.02367334, 0.00813999, 0.0080522 , 0.00186822]), 'rank_test_score': array([6, 6, 1, 6, 6, 3, 2, 3, 5, 6])}
