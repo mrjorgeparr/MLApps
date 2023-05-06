@@ -60,9 +60,9 @@ class TextPreprocessor:
         labels = self.data_df[label_column]
 
         preprocessed_corpus = [nltk.word_tokenize(self.preprocess_text(text)) for text in corpus]
+        preprocessed_corpus = [' '.join(tokens) for tokens in preprocessed_corpus]
 
         output_df = pd.DataFrame({'cleaned_text': preprocessed_corpus, 'labels': labels})
-
         output_df.to_csv(output_filename, index=False, encoding='utf-8')
 
         print("Done")
@@ -91,7 +91,9 @@ class TextPreprocessor:
         return 
 
 if __name__ == "__main__":
-    preprocesser = TextPreprocessor()
+    
     in_path = os.path.join("..","..","data","merged_reviews.csv")
-    out_path = os.path.join("..","..","data","preprocessed_data.csv")
-    preprocesser.preprocess_corpus(in_path,out_path)
+    out_path = os.path.join("..","..","data","preprocessed_data2.csv")
+    preprocessor = TextPreprocessor(input_path=in_path)
+    preprocessor.preprocess_labels()
+    preprocessor.preprocess_corpus(out_path)
