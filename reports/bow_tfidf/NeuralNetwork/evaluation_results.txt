@@ -1,0 +1,43 @@
+precision_weighted: 0.7637545584271443
+f1_weighted: 0.7445302239164557
+accuracy: 0.7641509433962265
+recall_weighted: 0.7641509433962265
+classification_report:               precision    recall  f1-score   support
+
+           1       0.76      0.44      0.56        72
+           2       0.76      0.93      0.84       140
+
+    accuracy                           0.76       212
+   macro avg       0.76      0.69      0.70       212
+weighted avg       0.76      0.76      0.74       212
+
+optimization_results: {'mean_fit_time': array([88.99740799, 18.91937153, 58.14561963, 22.15847953, 13.06656353,
+       31.43905695, 17.62352649, 19.32860883, 33.02058021, 16.79884076]), 'std_fit_time': array([3.55497949, 2.54569926, 0.99295311, 0.11429621, 1.1149541 ,
+       2.32993625, 1.96138796, 0.8706978 , 0.69298808, 1.56161126]), 'mean_score_time': array([0.00560459, 0.00668852, 0.00495124, 0.00775901, 0.01072979,
+       0.00655723, 0.00729044, 0.00592311, 0.00479325, 0.00784977]), 'std_score_time': array([0.00157891, 0.00255274, 0.00096174, 0.00152654, 0.00153935,
+       0.00074777, 0.00237549, 0.00175994, 0.00018463, 0.00061952]), 'param_solver': masked_array(data=['sgd', 'sgd', 'sgd', 'sgd', 'adam', 'adam', 'adam',
+                   'adam', 'adam', 'adam'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_hidden_layer_sizes': masked_array(data=[(100,), (50, 50), (50,), (50,), (50, 50), (100,),
+                   (50,), (50,), (100,), (50, 50)],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_alpha': masked_array(data=[0.01, 0.001, 0.001, 0.01, 0.01, 0.01, 0.001, 0.001,
+                   0.01, 0.001],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_activation': masked_array(data=['tanh', 'relu', 'tanh', 'relu', 'tanh', 'tanh', 'relu',
+                   'tanh', 'relu', 'tanh'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'params': [{'solver': 'sgd', 'hidden_layer_sizes': (100,), 'alpha': 0.01, 'activation': 'tanh'}, {'solver': 'sgd', 'hidden_layer_sizes': (50, 50), 'alpha': 0.001, 'activation': 'relu'}, {'solver': 'sgd', 'hidden_layer_sizes': (50,), 'alpha': 0.001, 'activation': 'tanh'}, {'solver': 'sgd', 'hidden_layer_sizes': (50,), 'alpha': 0.01, 'activation': 'relu'}, {'solver': 'adam', 'hidden_layer_sizes': (50, 50), 'alpha': 0.01, 'activation': 'tanh'}, {'solver': 'adam', 'hidden_layer_sizes': (100,), 'alpha': 0.01, 'activation': 'tanh'}, {'solver': 'adam', 'hidden_layer_sizes': (50,), 'alpha': 0.001, 'activation': 'relu'}, {'solver': 'adam', 'hidden_layer_sizes': (50,), 'alpha': 0.001, 'activation': 'tanh'}, {'solver': 'adam', 'hidden_layer_sizes': (100,), 'alpha': 0.01, 'activation': 'relu'}, {'solver': 'adam', 'hidden_layer_sizes': (50, 50), 'alpha': 0.001, 'activation': 'tanh'}], 'split0_test_score': array([0.22340426, 0.20567376, 0.21985816, 0.20567376, 0.28014184,
+       0.28368794, 0.29432624, 0.30141844, 0.30496454, 0.29432624]), 'split1_test_score': array([0.22340426, 0.20212766, 0.21276596, 0.20212766, 0.28723404,
+       0.29787234, 0.28368794, 0.29078014, 0.28723404, 0.27304965]), 'split2_test_score': array([0.22064057, 0.20640569, 0.22419929, 0.20640569, 0.29893238,
+       0.30960854, 0.28469751, 0.29181495, 0.31672598, 0.26690391]), 'mean_test_score': array([0.22248303, 0.2047357 , 0.21894113, 0.2047357 , 0.28876942,
+       0.29705627, 0.28757056, 0.29467118, 0.30297485, 0.27809327]), 'std_test_score': array([0.00130281, 0.00186822, 0.00471246, 0.00186822, 0.00774765,
+       0.01059776, 0.00479473, 0.0047897 , 0.01212196, 0.01174946]), 'rank_test_score': array([7, 9, 8, 9, 4, 2, 5, 3, 1, 6], dtype=int32)}
