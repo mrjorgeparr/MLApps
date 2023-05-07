@@ -1,7 +1,9 @@
 # Machine learning applications
+ 
+The following project performs machine learning based sentiment analysis on movie reviews scraped from the IMDb website.
 
-Project Folder Structure
-========================
+
+## Folder structure
 
 - data: Contains data sources for the project.
 - figures: Contains figures for the report of the project.
