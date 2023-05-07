@@ -1,0 +1,39 @@
+precision_weighted: 1.0
+f1_weighted: 1.0
+accuracy: 1.0
+recall_weighted: 1.0
+classification_report:               precision    recall  f1-score   support
+
+           1       1.00      1.00      1.00      8745
+
+    accuracy                           1.00      8745
+   macro avg       1.00      1.00      1.00      8745
+weighted avg       1.00      1.00      1.00      8745
+
+optimization_results: {'mean_fit_time': array([ 0.99308435, 36.36568101, 17.37846533,  0.88024831, 38.40584564,
+        6.71152035,  6.92937422,  3.54569968, 15.00896478, 52.55725543]), 'std_fit_time': array([0.04136022, 2.37284555, 3.1478967 , 0.30287583, 0.67334932,
+       0.12779129, 0.69522519, 0.12714037, 0.79147012, 3.75496478]), 'mean_score_time': array([0.00520889, 0.01041571, 0.01530123, 0.01760165, 0.01042295,
+       0.01562715, 0.0126667 , 0.00987379, 0.0156308 , 0.00823625]), 'std_score_time': array([7.36648238e-03, 7.36502133e-03, 4.61255151e-04, 2.77989374e-03,
+       7.37014937e-03, 2.43140197e-06, 9.41897896e-04, 7.01324392e-03,
+       9.00606700e-06, 5.97753010e-03]), 'param_solver': masked_array(data=['liblinear', 'saga', 'saga', 'saga', 'liblinear',
+                   'saga', 'saga', 'saga', 'liblinear', 'liblinear'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_penalty': masked_array(data=['l1', 'l1', 'l2', 'l1', 'l1', 'l1', 'l2', 'l2', 'l2',
+                   'l1'],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'param_C': masked_array(data=[0.001, 1000.0, 31.622776601683793, 0.001, 1.0,
+                   0.03162277660168379, 1.0, 0.001, 1000.0, 1000.0],
+             mask=[False, False, False, False, False, False, False, False,
+                   False, False],
+       fill_value='?',
+            dtype=object), 'params': [{'solver': 'liblinear', 'penalty': 'l1', 'C': 0.001}, {'solver': 'saga', 'penalty': 'l1', 'C': 1000.0}, {'solver': 'saga', 'penalty': 'l2', 'C': 31.622776601683793}, {'solver': 'saga', 'penalty': 'l1', 'C': 0.001}, {'solver': 'liblinear', 'penalty': 'l1', 'C': 1.0}, {'solver': 'saga', 'penalty': 'l1', 'C': 0.03162277660168379}, {'solver': 'saga', 'penalty': 'l2', 'C': 1.0}, {'solver': 'saga', 'penalty': 'l2', 'C': 0.001}, {'solver': 'liblinear', 'penalty': 'l2', 'C': 1000.0}, {'solver': 'liblinear', 'penalty': 'l1', 'C': 1000.0}], 'split0_test_score': array([0.37915952, 0.60042882, 0.60068611, 0.37915952, 0.5922813 ,
+       0.52084048, 0.60128645, 0.38627787, 0.59185249, 0.59236707]), 'split1_test_score': array([0.37915952, 0.60566038, 0.60557461, 0.37915952, 0.5974271 ,
+       0.52572899, 0.60283019, 0.38473413, 0.59802744, 0.59794168]), 'split2_test_score': array([0.37919204, 0.60348229, 0.60271035, 0.37919204, 0.59524831,
+       0.52320096, 0.60468308, 0.38536753, 0.59396175, 0.59353289]), 'mean_test_score': array([0.37917036, 0.60319049, 0.60299036, 0.37917036, 0.59498557,
+       0.52325681, 0.60293324, 0.38545984, 0.59461389, 0.59461388]), 'std_test_score': array([1.53304324e-05, 2.14571904e-03, 2.00552222e-03, 1.53304324e-05,
+       2.10896195e-03, 1.99611560e-03, 1.38858081e-03, 6.33600624e-04,
+       2.56274526e-03, 2.40076107e-03]), 'rank_test_score': array([9, 1, 2, 9, 4, 7, 3, 8, 5, 6])}
