@@ -1,0 +1,13 @@
+Classifier,Vectorizer,accuracy,f1,precision,recall
+Logistic Regression,word2vec_1gram,1.0,1.0,1.0,1.0
+Logistic Regression,word2vec_3gram,1.0,1.0,1.0,1.0
+Logistic Regression,word2vec_1gram_w8,1.0,1.0,1.0,1.0
+SVM,word2vec_1gram,1.0,1.0,1.0,1.0
+Logistic Regression_balance,word2vec_1gram,1.0,1.0,1.0,1.0
+SVM_balance,word2vec_1gram,1.0,1.0,1.0,1.0
+SVM,word2vec_3gram,1.0,1.0,1.0,1.0
+Logistic Regression_balance,word2vec_3gram,1.0,1.0,1.0,1.0
+SVM_balance,word2vec_3gram,1.0,1.0,1.0,1.0
+SVM,word2vec_1gram_w8,1.0,1.0,1.0,1.0
+Logistic Regression_balance,word2vec_1gram_w8,1.0,1.0,1.0,1.0
+SVM_balance,word2vec_1gram_w8,1.0,1.0,1.0,1.0
